@@ -5,7 +5,6 @@
  * as shown at https://oss.oracle.com/licenses/upl/
  * @ignore
  */
-import { h } from "preact";
 
 type Props = {
   links?: FooterLink[]
