@@ -1,0 +1,56 @@
+ {
+        path: "settings",
+        detail: {
+          label: "Settings",
+          iconClass: "oj-navigationlist-item-icon oj-ux-ico-instructor-training-plus",
+        },
+      },
+
+
+      import ArrayDataProvider = require("ojs/ojarraydataprovider");
+
+import "ojs/ojnavigationlist";
+import { ojNavigationList } from "ojs/ojnavigationlist";
+
+
+type Route = {
+  path: string;
+  detail?: {
+    label?: string;
+    iconClass?: string;
+  };
+}
+
+type Props = Readonly<{
+  appName: string;
+  userLogin: string;
+  allRoutes:Array<Route>;
+  page?:string;
+}>;
+
+
+
+  const renderNavList = (item: ojNavigationList.ItemContext<string, Route>) => {
+   
+    return (
+      <li id={item.data.path}>
+        <a href="#">
+          <span class={item.data.detail.iconClass} />
+          {getDisplayType() === "all" ? item.data.detail.label : ""}
+        </a>
+      </li>
+    );
+  };
+
+
+  <div  role="navigation" class="oj-web-applayout-max-width oj-web-layout-navbar">
+            <oj-navigation-list  edge="top"  drillMode="none" data={routesListADP} selection={page}
+            onselectionChanged={(e)=>{console.error("page changed",e)}}>
+             <template slot="itemTemplate" render={renderNavList} >
+            </template>
+            </oj-navigation-list>
+             
+          </div>
+
+
+          const routesListADP = new ArrayDataProvider(allRoutes, { keyAttributes: "path" });

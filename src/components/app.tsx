@@ -16,6 +16,15 @@ type Props = Readonly<{
   appName?: string;
   userLogin?: string;
 }>;
+type Route = {
+  path: string;
+  detail?: {
+    label?: string;
+    iconClass?: string;
+  };
+};
+
+
 
 export const App = registerCustomElement(
   "app-root",
@@ -23,13 +32,35 @@ export const App = registerCustomElement(
     useEffect(() => {
       Context.getPageContext().getBusyContext().applicationBootstrapComplete();
     }, []);
+
+    const routingList: Array<Route> = [
+      {
+        path: "home",
+        detail: {
+          label: "Home",
+          iconClass: "oj-navigationlist-item-icon oj-ux-ico-instructor-training-plus",
+        },
+      },
+      {
+        path: "profile",
+        detail: {
+          label: "Profile",
+          iconClass: "oj-navigationlist-item-icon oj-ux-ico-instructor-training-plus",
+        },
+      },
+      {
+        path: "settings",
+        detail: {
+          label: "Settings",
+          iconClass: "oj-navigationlist-item-icon oj-ux-ico-instructor-training-plus",
+        },
+      },
+    ];
     
+
     return (
       <div id="appContainer" class="oj-web-applayout-page">
-        <Header
-          appName={appName} 
-          userLogin={userLogin} 
-        />
+        <Header appName={appName} userLogin={userLogin}   allRoutes={routingList}   page="profile"/>
         <Content />
         <Footer />
       </div>
