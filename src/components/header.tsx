@@ -25,17 +25,16 @@ type Route = {
 type Props = Readonly<{
   appName: string;
   userLogin: string;
-  allRoutes: Array<Route>;
-  page?: string;
+ 
  }>;
 
 
-export function Header({ appName, userLogin,  allRoutes, page}: Props) {
+export function Header({ appName, userLogin,}: Props) {
   const mediaQueryRef = useRef<MediaQueryList>(window.matchMedia(ResponsiveUtils.getFrameworkQuery("sm-only")!));
 
   const [isSmallWidth, setIsSmallWidth] = useState(mediaQueryRef.current.matches);
 
-  const routesADP = new ArrayDataProvider(allRoutes, { keyAttributes: "path" });
+  
 
   useEffect(() => {
     mediaQueryRef.current.addEventListener("change", handleMediaQueryChange);
@@ -76,10 +75,10 @@ export function Header({ appName, userLogin,  allRoutes, page}: Props) {
           </h1>
         </div>
         <div class="oj-flex-bar-end">
-          <oj-navigation-list edge="top" data={routesADP} selection={page} onselectionChanged={(e)=>{console.error("selection changed" , e)}}>
+          {/* <oj-navigation-list edge="top" data={routesADP} selection={page} onselectionChanged={(e)=>{console.error("selection changed" , e)}}>
           <template slot="itemTemplate" render={renderNavList} >
           </template>
-          </oj-navigation-list>
+          </oj-navigation-list> */}
           
           <oj-toolbar>
             <oj-menu-button id="userMenu" display={getDisplayType()} chroming="borderless">

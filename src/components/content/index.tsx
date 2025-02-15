@@ -1,10 +1,12 @@
 
 import "ojs/ojinputtext";
+import { useNavigate } from "react-router-dom";
 export function Content() {
+  const navigate = useNavigate();
   return ( 
-  
+   
     <div class="oj-web-applayout-max-width oj-web-applayout-content">
-      <oj-input-text></oj-input-text>
+     <a onClick={()=>navigate('contact')}>Test1</a>
     </div>
   );
 };
