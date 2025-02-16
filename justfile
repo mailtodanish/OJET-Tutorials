@@ -6,6 +6,5 @@ serve:
 
 merge:
     git checkout main
-    git pull origin main
-    git merge navigation-and-flex-bar
-    git push origin main
+    git reset --hard navigation-and-flex-bar
+    git push --force origin main
