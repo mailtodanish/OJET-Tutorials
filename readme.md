@@ -14,4 +14,9 @@ Please refer my youtube plalist. I have added new branch for each topic.
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mohdahshandanish/)
 [![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/mailtodanish)
 
-npm @oracle/ojet-cli serve
+npx @oracle/ojet-cli serve
+
+sudo nginx -t
+sudo  nginx -s stop
+sudo  nginx -s reload
+sudo nginx -s stop && sudo nginx
