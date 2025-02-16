@@ -7,7 +7,10 @@
  */
 import { registerCustomElement } from "ojs/ojvcomponent";
 import { useEffect } from "preact/hooks";
-import { Content } from "./content/index";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { Home } from "./content/home";
+import { Profile } from "./content/profile";
+import { Settings } from "./content/setting";
 import { Footer } from "./footer";
 import { Header } from "./header";
 import Context = require("ojs/ojcontext");
@@ -16,6 +19,7 @@ type Props = Readonly<{
   appName?: string;
   userLogin?: string;
 }>;
+
 type Route = {
   path: string;
   detail?: {
@@ -56,12 +60,26 @@ export const App = registerCustomElement(
         },
       },
     ];
-    
 
+
+
+    const pageChangeHandler = (value: string) => {
+         console.error("pageChangeHandler", value);
+      
+      };
     return (
-      <div id="appContainer" class="oj-web-applayout-page">
-        <Header appName={appName} userLogin={userLogin}   allRoutes={routingList}   page="profile"/>
-        <Content />
+      <div id="appContainer" class="oj-web-applayout-page">        
+        <BrowserRouter>
+        <Header appName={appName} userLogin={userLogin}   allRoutes={routingList}   page="profile" onPageChanged={pageChangeHandler}/>
+                <Routes>
+                        <Route path="/" element={<Outlet />}>
+                                <Route index element={<Home />} />
+                                <Route path="home/*" element={<Home />} />
+                                <Route path="profile/*" element={<Profile />} />
+                                <Route path="settings/*" element={<Settings />} />
+                        </Route>                        
+                </Routes>
+        </BrowserRouter>
         <Footer />
       </div>
     );

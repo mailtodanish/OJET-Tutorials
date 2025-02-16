@@ -13,6 +13,7 @@ import { ojNavigationList } from "ojs/ojnavigationlist";
 import * as ResponsiveUtils from "ojs/ojresponsiveutils";
 import "ojs/ojtoolbar";
 import { useEffect, useRef, useState } from "preact/hooks";
+import { useNavigate } from "react-router-dom";
 
 
 type Route = {
@@ -27,10 +28,11 @@ type Props = Readonly<{
   userLogin: string;
   allRoutes: Array<Route>;
   page?: string;
+  onPageChanged: (page: string) => void;
  }>;
 
 
-export function Header({ appName, userLogin,  allRoutes, page}: Props) {
+export function Header({ appName, userLogin,  allRoutes, page, onPageChanged}: Props) {
   const mediaQueryRef = useRef<MediaQueryList>(window.matchMedia(ResponsiveUtils.getFrameworkQuery("sm-only")!));
 
   const [isSmallWidth, setIsSmallWidth] = useState(mediaQueryRef.current.matches);
@@ -65,6 +67,15 @@ export function Header({ appName, userLogin,  allRoutes, page}: Props) {
   function getEndIconClass() {
     return isSmallWidth ? "oj-icon demo-appheader-avatar" : "oj-component-icon oj-button-menu-dropdown-icon";
   }
+  const navigate = useNavigate();
+
+  const pageChangeHandler = (
+    event: ojNavigationList.selectionChanged<Route["path"], Route>
+  ) => {
+    if (event.detail.updatedFrom === "internal")
+      navigate(event.detail.value);
+      onPageChanged(event.detail.value);
+  };
 
   return (
     <header role="banner" class="oj-web-applayout-header">
@@ -76,7 +87,7 @@ export function Header({ appName, userLogin,  allRoutes, page}: Props) {
           </h1>
         </div>
         <div class="oj-flex-bar-end">
-          <oj-navigation-list edge="top" data={routesADP} selection={page} onselectionChanged={(e)=>{console.error("selection changed" , e)}}>
+          <oj-navigation-list edge="top" data={routesADP} selection={page} onselectionChanged={pageChangeHandler}>
           <template slot="itemTemplate" render={renderNavList} >
           </template>
           </oj-navigation-list>
