@@ -17,6 +17,9 @@ Please refer my youtube plalist. I have added new branch for each topic.
 npx @oracle/ojet-cli serve
 
 sudo nginx -t
+
 sudo  nginx -s stop
+
 sudo  nginx -s reload
+
 sudo nginx -s stop && sudo nginx
