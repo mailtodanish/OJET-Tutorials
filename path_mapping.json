@@ -487,6 +487,19 @@
         "src": ["**"],
         "path": "libs/@remix-run/router.umd.js"
       }
+    },
+    "luxon": { 
+      "cwd": "node_modules/luxon/build/global",
+      "debug": {
+        "src": ["luxon.min.js", "luxon.min.js.map"],
+        "path": "libs/luxon/luxon.min.js"
+       
+      },
+      "release": {
+        "src": ["luxon.min.js", "luxon.min.js.map"],
+        "path": "libs/luxon/luxon.min.js"
+        
+      }
     }
   }
 }

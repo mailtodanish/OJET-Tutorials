@@ -50,8 +50,9 @@
                                 proj4: "libs/proj4js/dist/proj4-src",
                                 touchr: "libs/touchr/touchr",
                                 chai: "libs/chai/chai-4.3.10",
-                        },
+                        }
                 // endinjector
+                
         });
 })();
 

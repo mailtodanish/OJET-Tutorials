@@ -1,20 +1,19 @@
-/**
- * @license
- * Copyright (c) 2014, 2024, Oracle and/or its affiliates.
- * Licensed under The Universal Permissive License (UPL), Version 1.0
- * as shown at https://oss.oracle.com/licenses/upl/
- * @ignore
- */
+
+
 import ArrayDataProvider = require("ojs/ojarraydataprovider");
+
+import "luxon";
 import "ojs/ojbutton";
 import "ojs/ojmenu";
 import "ojs/ojnavigationlist";
 import { ojNavigationList } from "ojs/ojnavigationlist";
+import "ojs/ojoption";
 import * as ResponsiveUtils from "ojs/ojresponsiveutils";
 import "ojs/ojtoolbar";
 import { useEffect, useRef, useState } from "preact/hooks";
 import { useNavigate } from "react-router-dom";
 
+declare var luxon: any;
 
 type Route = {
   path: string;
@@ -33,6 +32,12 @@ type Props = Readonly<{
 
 
 export function Header({ appName, userLogin,  allRoutes, page, onPageChanged}: Props) {
+
+  const [currentDate, setcurrentDate] = useState("") 
+
+  setcurrentDate(luxon.DateTime.now().setZone('America/New_York').toISO() || "");   
+  
+
   const mediaQueryRef = useRef<MediaQueryList>(window.matchMedia(ResponsiveUtils.getFrameworkQuery("sm-only")!));
 
   const [isSmallWidth, setIsSmallWidth] = useState(mediaQueryRef.current.matches);
@@ -58,7 +63,7 @@ export function Header({ appName, userLogin,  allRoutes, page, onPageChanged}: P
       <li id={item.data.path}>
         <a href="#">
           <span class={item.data.detail.iconClass} />
-          {getDisplayType() === "all" ? item.data.detail.label : ""}
+          {getDisplayType() === "all" ? item.data.detail.label  : ""}
         </a>
       </li>
     );
@@ -83,7 +88,7 @@ export function Header({ appName, userLogin,  allRoutes, page, onPageChanged}: P
         <div class="oj-flex-bar-middle oj-sm-align-items-baseline">
           <span role="img" class="oj-icon demo-oracle-icon" title="Oracle Logo" alt="Oracle Logo"></span>
           <h1 class="oj-sm-only-hide oj-web-applayout-header-title" title="Application Name">
-            {appName}
+            {currentDate}
           </h1>
         </div>
         <div class="oj-flex-bar-end">

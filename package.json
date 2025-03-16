@@ -5,11 +5,13 @@
   "dependencies": {
     "@oracle/oraclejet": "~17.0.0",
     "@oracle/oraclejet-core-pack": "~17.0.0",
-    "react-router-dom": "^6.29.0",
-    "react-router": "6.29.0"
+    "luxon": "^3.5.0",
+    "react-router": "6.29.0",
+    "react-router-dom": "^6.29.0"
   },
   "devDependencies": {
     "@oracle/ojet-cli": "~17.0.0",
+    "@types/luxon": "^3.4.2",
     "extract-zip": "^1.7.0",
     "fs-extra": "^8.1.0",
     "glob": "10.4.5",

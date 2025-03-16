@@ -13,6 +13,7 @@ module.exports = function (configObj) {
                 configObj.requireJs.paths["react-router"] = "empty:";
                 configObj.requireJs.paths["react-router-dom"] = "empty:";
                 configObj.requireJs.paths["@remix-run"] = "empty:";
+                // configObj.requireJs.paths["luxon"] = "empty:";
 
                 console.log("Patching re-mapping for react-compat");
                 configObj.requireJs.map = {
