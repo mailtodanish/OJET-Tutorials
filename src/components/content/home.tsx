@@ -7,7 +7,7 @@ import { useCallback, useState } from "preact/hooks";
 export function Home() {
         const isoTimeNow = new Date().toISOString();
         const [Message, setMessage] = useState<ojMessage.Message[]>([]);
-
+        const [Display, setDisplay] = useState<'general' | 'notification'>("notification");
         const position: ojMessages.Position = {
                 at: {
                         horizontal: "end",
@@ -21,6 +21,7 @@ export function Home() {
         };
 
         const handleClick = () => {
+                setDisplay(Display == "notification" ? "general" : "notification");
                 setMessage([
                         {
                                 severity: "error",
@@ -28,7 +29,7 @@ export function Home() {
                                 detail: "Error message detail",
                                 timestamp: isoTimeNow,
                                 sound: "default",
-                                autoTimeout: 1000,
+                                autoTimeout: 2000,
                                 icon: "./styles/images/JET-Favicon-Red-32x32.png",
                         },
                 ]);
@@ -57,7 +58,7 @@ export function Home() {
                         <oj-button id="button" onClick={handleClick}>
                                 message-notification
                         </oj-button>
-                        <oj-messages id="message" messages={Message} position={position} display="notification"
+                        <oj-messages id="message" messages={Message} position={position} display={Display}
                        >
                         <template slot="messageTemplate" render={renderListItem}>
                         
