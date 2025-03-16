@@ -25,7 +25,8 @@
       "preact": ["./node_modules/preact"],
       "react-router-dom": ["./node_modules/react-router-dom/dist/umd"],
       "react-router": ["./node_modules/react-router/dist/umd"],
-      "@remix-run": ["./node_modules/@remix-run/router/dist"]
+      "@remix-run": ["./node_modules/@remix-run/router/dist"],
+      "luxon": ["./node_modules/luxon/build/global"]
     },
     "declaration": true,
     "noEmitOnError": true,
